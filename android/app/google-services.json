@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "281032659892",
+    "project_id": "whatsup1to1",
+    "storage_bucket": "whatsup1to1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:281032659892:android:eeb636b4908069eaadd8e1",
+        "android_client_info": {
+          "package_name": "com.usman.whatsup1to1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "281032659892-2qu62lp8r46vovcfpnnlmst22vatmjup.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEWRgGzf8tKPOwdDYrVCUcoY9s8C81qP4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "281032659892-2qu62lp8r46vovcfpnnlmst22vatmjup.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
