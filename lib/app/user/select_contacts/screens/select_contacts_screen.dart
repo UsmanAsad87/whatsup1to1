@@ -41,6 +41,12 @@ class SelectContactsScreen extends ConsumerWidget {
                         fontSize: 18,
                       ),
                     ),
+                    // subtitle: Text(
+                    //   contact.phones[0].number.toString(),
+                    //   style: const TextStyle(
+                    //     fontSize: 12,
+                    //   ),
+                    // ),
                     leading: contact.photo == null ? null : CircleAvatar(
                       backgroundImage: MemoryImage(contact.photo!),
                       radius: 30,

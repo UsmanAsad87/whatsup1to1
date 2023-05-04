@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:whatsup1to1/common/common_apis_libs/common_api_libs.dart';
 import 'package:whatsup1to1/common/utils/utils.dart';
+import 'package:whatsup1to1/routes/route_manager.dart';
 
 import '../../../user_auth/data/models/user_model.dart';
 import '../../chat/screens/mobile_chat_screen.dart';
@@ -33,7 +35,7 @@ class SelectContactRepository {
 
   void selectContact(Contact selectedContact,BuildContext context) async{
     try{
-      var userCollection = await firestore.collection('users').get();
+      var userCollection = await firestore.collection(FirebaseConstants.userCollection).get();
       bool isFound =false;
       for( var document in userCollection.docs){
         var userData = UserModel.fromJson(document.data());
@@ -41,13 +43,14 @@ class SelectContactRepository {
         if(selectedPhoneNum[3] =='0') {
           selectedPhoneNum=replaceCharAt(selectedPhoneNum,3, '');
         }
+        print("From firebase: "+ userData.phone!);
+        print("Selected: "+selectedPhoneNum);
         if(selectedPhoneNum== userData.phone) {
           isFound = true;
           print(userData.toJson());
-          Navigator.pushNamed((context), MobileChatScreen.routeName,arguments: {
+          Navigator.pushNamed((context), AppRoutes.mobileChatScreen,arguments: {
             'name':userData.name,
             'uid':userData.uid,
-            'isGroupChat':false
           });
         }
       }

@@ -28,14 +28,16 @@ class ChatController {
   ) {
     final messageReply = ref.read(messageReplyProvider);
     ref.read(userDataAuthProvider).whenData(
-          (value) => chatRepository.sendTextMessage(
+          (value) {
+            chatRepository.sendTextMessage(
             context: context,
             text: text,
             receiverUserId: receiverUserId,
-            senderUser: value!,
+            senderUser: value,
             messageReply: messageReply,
             isGroupChat: isGroupChat,
-          ),
+          );
+          },
         );
     ref.read(messageReplyProvider.state).update((state) => null);
   }

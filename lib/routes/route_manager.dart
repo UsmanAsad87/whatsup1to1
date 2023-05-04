@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsup1to1/app/seller/seller_home.dart';
+import 'package:whatsup1to1/app/user/chat/screens/mobile_chat_screen.dart';
 import 'package:whatsup1to1/app/user/select_contacts/screens/select_contacts_screen.dart';
 import 'package:whatsup1to1/app/user_auth/views/seller_account_under_review.dart';
 import 'package:whatsup1to1/app/user_auth/views/seller_main_store_address.dart';
@@ -41,7 +42,7 @@ class AppRoutes {
   static const String adminMainMenu = '/AdminMainMenu';
 
   static const String selectContactScreen = '/selectContactScreen';
-
+  static const String mobileChatScreen = '/mobileChatScreen';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -66,11 +67,6 @@ class AppRoutes {
       case userOTPScreen:
         return _buildRoute(const UserOTPScreen());
 
-
-
-
-
-
       case sellerMainMenu:
         return _buildNormalRoute(const SellerHome());
       case sellerSelectTypeScreen:
@@ -83,7 +79,13 @@ class AppRoutes {
         return _buildRoute(const SellerAccountUnderReviewScreen());
       case selectContactScreen:
         return _buildRoute(const SelectContactsScreen());
-
+      case mobileChatScreen:
+        final arguments = settings.arguments as Map<String, dynamic>;
+        return _buildRoute(MobileChatScreen(
+          isGroupChat: false,
+          name: arguments['name'],
+          uid: arguments['uid'],
+        ));
 
       default:
         return unDefinedRoute();

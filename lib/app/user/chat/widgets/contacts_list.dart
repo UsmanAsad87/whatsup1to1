@@ -6,6 +6,7 @@ import 'package:whatsup1to1/app/user/chat/screens/mobile_chat_screen.dart';
 import 'package:whatsup1to1/colors.dart';
 import 'package:whatsup1to1/common/widgets/loader.dart';
 import 'package:whatsup1to1/models/chat_contact.dart';
+import 'package:whatsup1to1/routes/route_manager.dart';
 
 class ContactsList extends ConsumerWidget {
   final bool isWeb;
@@ -34,7 +35,7 @@ class ContactsList extends ConsumerWidget {
                         InkWell(
                           onTap: () {
                             Navigator.of(context).pushNamed(
-                                    MobileChatScreen.routeName,
+                                    AppRoutes.mobileChatScreen,
                                     arguments: {
                                       'name':chatContactData.name,
                                       'uid':chatContactData.contactId,
