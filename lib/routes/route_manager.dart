@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsup1to1/app/seller/seller_chat/screens/seller_chat_screen.dart';
 import 'package:whatsup1to1/app/seller/seller_home.dart';
 import 'package:whatsup1to1/app/user/chat/screens/mobile_chat_screen.dart';
 import 'package:whatsup1to1/app/user/select_contacts/screens/select_contacts_screen.dart';
@@ -43,6 +44,7 @@ class AppRoutes {
 
   static const String selectContactScreen = '/selectContactScreen';
   static const String mobileChatScreen = '/mobileChatScreen';
+  static const String sellerChatScreen = '/sellerChatScreen';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -82,6 +84,13 @@ class AppRoutes {
       case mobileChatScreen:
         final arguments = settings.arguments as Map<String, dynamic>;
         return _buildRoute(MobileChatScreen(
+          isGroupChat: false,
+          name: arguments['name'],
+          uid: arguments['uid'],
+        ));
+      case sellerChatScreen:
+        final arguments = settings.arguments as Map<String, dynamic>;
+        return _buildRoute(SellerChatScreen(
           isGroupChat: false,
           name: arguments['name'],
           uid: arguments['uid'],

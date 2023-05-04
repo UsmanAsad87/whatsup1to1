@@ -6,6 +6,7 @@ import 'package:whatsup1to1/common/widgets/error.dart';
 import 'package:whatsup1to1/common/widgets/loader.dart';
 import 'package:whatsup1to1/routes/route_manager.dart';
 
+import '../../../../colors.dart';
 import '../controller/select_contact_controller.dart';
 
 class SelectContactsScreen extends ConsumerWidget {
@@ -24,6 +25,7 @@ class SelectContactsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: appBarColor,
         title: const Text('Select contact'),
       ),
       body:ref.watch(getContactProvider).when(
