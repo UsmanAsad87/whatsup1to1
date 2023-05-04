@@ -13,18 +13,21 @@ String replaceCharAt(String oldString, int index, String newChar) {
   return oldString.substring(0, index) + newChar + oldString.substring(index + 1);
 }
 
-final selectContactRepositoryProvider = Provider((ref) => SelectContactRepository(firestore: FirebaseFirestore.instance),);
+final selectContactRepositoryProvider = Provider((ref) => SelectContactRepository(firestore: FirebaseFirestore.instance,auth: ref.watch(firebaseAuthProvider)),);
 
 class SelectContactRepository {
   final FirebaseFirestore firestore;
+  final FirebaseAuth auth;
 
-  SelectContactRepository({required this.firestore});
+  SelectContactRepository({required this.auth, required this.firestore});
 
-  Future<List<Contact>> getContacts() async {
-    List<Contact> contacts = [];
+  Future<List<UserModel>> getContacts() async {
+    List<UserModel> contacts = [];
     try {
-      if (await FlutterContacts.requestPermission()) {
-        contacts = await FlutterContacts.getContacts(withProperties: true);
+      var userCollection = await firestore.collection(FirebaseConstants.userCollection).where('uid',isNotEqualTo:auth.currentUser!.uid ).get();
+      for( var document in userCollection.docs){
+        var userData = UserModel.fromJson(document.data());
+        contacts.add(userData);
       }
     } catch (e) {
       debugPrint(e.toString());
@@ -33,33 +36,33 @@ class SelectContactRepository {
     return contacts;
   }
 
-  void selectContact(Contact selectedContact,BuildContext context) async{
-    try{
-      var userCollection = await firestore.collection(FirebaseConstants.userCollection).get();
-      bool isFound =false;
-      for( var document in userCollection.docs){
-        var userData = UserModel.fromJson(document.data());
-        String selectedPhoneNum = selectedContact.phones[0].number.replaceAll(' ', '');
-        if(selectedPhoneNum[3] =='0') {
-          selectedPhoneNum=replaceCharAt(selectedPhoneNum,3, '');
-        }
-        print("From firebase: "+ userData.phone!);
-        print("Selected: "+selectedPhoneNum);
-        if(selectedPhoneNum== userData.phone) {
-          isFound = true;
-          print(userData.toJson());
-          Navigator.pushNamed((context), AppRoutes.mobileChatScreen,arguments: {
-            'name':userData.name,
-            'uid':userData.uid,
-          });
-        }
-      }
-      if(!isFound){
-        showSnackBar(context: context, content: 'This number does not exist in this app.');
-      }
-    }catch(e){
-      showSnackBar(context: context, content: e.toString());
-
-    }
-  }
+  // void selectContact(UserModel selectedContact,BuildContext context) async{
+  //   try{
+  //     var userCollection = await firestore.collection(FirebaseConstants.userCollection).get();
+  //     bool isFound =false;
+  //     for( var document in userCollection.docs){
+  //       var userData = UserModel.fromJson(document.data());
+  //       String selectedPhoneNum = selectedContact.phones[0].number.replaceAll(' ', '');
+  //       if(selectedPhoneNum[3] =='0') {
+  //         selectedPhoneNum=replaceCharAt(selectedPhoneNum,3, '');
+  //       }
+  //       print("From firebase: "+ userData.phone!);
+  //       print("Selected: "+selectedPhoneNum);
+  //       if(selectedPhoneNum== userData.phone) {
+  //         isFound = true;
+  //         print(userData.toJson());
+  //         Navigator.pushNamed((context), AppRoutes.mobileChatScreen,arguments: {
+  //           'name':userData.name,
+  //           'uid':userData.uid,
+  //         });
+  //       }
+  //     }
+  //     if(!isFound){
+  //       showSnackBar(context: context, content: 'This number does not exist in this app.');
+  //     }
+  //   }catch(e){
+  //     showSnackBar(context: context, content: e.toString());
+  //
+  //   }
+  // }
 }

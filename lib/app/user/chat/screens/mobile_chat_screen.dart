@@ -26,7 +26,6 @@ class MobileChatScreen extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(name),
-                  Text('offline'),
                   // Text(user.isOnline? 'online':'offline',
                   //   style: const TextStyle(
                   //       fontSize: 13,
