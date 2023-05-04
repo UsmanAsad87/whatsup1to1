@@ -138,6 +138,14 @@ class AuthApis implements IAuthApis {
     return _auth.authStateChanges();
   }
 
+  userData(String userId) {
+    return _firestore.collection(FirebaseConstants.userCollection).doc(userId).snapshots().map(
+          (event) => UserModel.fromJson(
+        event.data()!,
+      ),
+    );
+  }
+
   @override
   FutureEitherVoid saveUserInfo({required UserModel userModel}) async {
     try {
@@ -178,6 +186,13 @@ class AuthApis implements IAuthApis {
     return document;
   }
 
+  Future<DocumentSnapshot> getUserData() async {
+    final DocumentSnapshot document = await _firestore
+        .collection(FirebaseConstants.userCollection)
+        .doc(_auth.currentUser!.uid)
+        .get();
+    return document;
+  }
 
 
   FutureEither<String> uploadFileAttachment({required File file, required String fileName}) async {
@@ -194,5 +209,13 @@ class AuthApis implements IAuthApis {
     } catch (e, stackTrace) {
       return Left(Failure(e.toString(), stackTrace));
     }
+  }
+
+
+
+  void setUserState(bool isOnline)async{
+    await _firestore.collection(FirebaseConstants.userCollection).doc(_auth.currentUser!.uid).update({
+      'isOnline': isOnline,
+    });
   }
 }

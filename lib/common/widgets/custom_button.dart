@@ -2,6 +2,7 @@
 
 
 
+import 'package:whatsup1to1/colors.dart';
 import 'package:whatsup1to1/common/common_libs.dart';
 import 'package:whatsup1to1/utils/loading.dart';
 import 'package:whatsup1to1/utils/thems/my_colors.dart';
@@ -52,6 +53,31 @@ class CustomButton extends StatelessWidget {
               getMediumStyle(color:textColor?? Colors.white, fontSize:fontSize?? 16.sp ),
             )
           ),
+        ),
+      ),
+    );
+  }
+}
+
+
+class CustomButton2 extends StatelessWidget {
+  final String text;
+  final VoidCallback onPress;
+  const CustomButton2({Key? key, required this.text, required this.onPress}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPress,
+      style: ElevatedButton.styleFrom(
+          primary: tabColor,
+          minimumSize: const Size(double.infinity, 50)
+
+      ),
+      child: Text(
+        text,
+        style: const TextStyle(
+          color: blackColor,
         ),
       ),
     );

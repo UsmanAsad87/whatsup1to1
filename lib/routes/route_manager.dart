@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsup1to1/app/seller/seller_home.dart';
+import 'package:whatsup1to1/app/user/select_contacts/screens/select_contacts_screen.dart';
 import 'package:whatsup1to1/app/user_auth/views/seller_account_under_review.dart';
 import 'package:whatsup1to1/app/user_auth/views/seller_main_store_address.dart';
 import 'package:whatsup1to1/app/user_auth/views/seller_select_type_screen.dart';
@@ -38,6 +39,8 @@ class AppRoutes {
       '/sellerAccountUnderReviewScreen';
 
   static const String adminMainMenu = '/AdminMainMenu';
+
+  static const String selectContactScreen = '/selectContactScreen';
 
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -78,6 +81,8 @@ class AppRoutes {
         return _buildRoute(const SellerMainStoreAddress());
       case sellerAccountUnderReviewScreen:
         return _buildRoute(const SellerAccountUnderReviewScreen());
+      case selectContactScreen:
+        return _buildRoute(const SelectContactsScreen());
 
 
       default:
