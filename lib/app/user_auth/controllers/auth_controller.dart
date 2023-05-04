@@ -24,6 +24,7 @@ final userStateStreamProvider = StreamProvider((ref) {
   return authProvider.getSigninStatusOfUser();
 });
 
+
 final currentUserAuthProvider = FutureProvider((ref) {
   final authCtr = ref.watch(authControllerProvider.notifier);
   return authCtr.currentUser();
@@ -32,6 +33,15 @@ final currentUserAuthProvider = FutureProvider((ref) {
 final currentAuthUserInfoProvider = FutureProvider.family((ref, String uid) {
   final profileController = ref.watch(authControllerProvider.notifier);
   return profileController.getCurrentUserInfo(uid: uid);
+});
+
+final fetchUserByIdProvider = StreamProvider.family((ref, String uid) {
+  final profileController = ref.watch(authControllerProvider.notifier);
+  return profileController.userDataById(uid);
+});
+final userDataAuthProvider = FutureProvider((ref){
+  final authController = ref.watch(authControllerProvider.notifier);
+  return authController.getUserData();
 });
 
 class AuthController extends StateNotifier<bool> {
@@ -169,6 +179,18 @@ class AuthController extends StateNotifier<bool> {
     return userModel;
   }
 
+  Future<UserModel> getUserData() async {
+
+    final result = await _authApis.getUserData();
+    UserModel userModel =
+    UserModel.fromJson(result.data() as Map<String, dynamic>);
+    return userModel;
+  }
+
+  void setUserState(bool isOnline){
+    _authApis.setUserState(isOnline);
+  }
+
   Future<void> changeUserPassword({
     required String currentPass,
     required String newPass,
@@ -218,6 +240,10 @@ class AuthController extends StateNotifier<bool> {
   Stream<User?> getSigninStatusOfUser() {
     return _authApis.getSignInStatusOfUser();
   }
+  Stream<UserModel> userDataById(String userId){
+    return _authApis.userData(userId);
+  }
+
 
   // Update User Information
   // Future<void> updateCurrentUserInfo({
