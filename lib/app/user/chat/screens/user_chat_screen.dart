@@ -7,12 +7,12 @@ import '../../../user_auth/controllers/auth_controller.dart';
 import '../widgets/bottom_chat_field.dart';
 import '../widgets/chat_list.dart';
 
-class MobileChatScreen extends ConsumerWidget {
+class UserChatScreen extends ConsumerWidget {
   static const String routeName = '/mobile-chat-screen';
   final String name;
   final String uid;
   final bool isGroupChat;
-  const MobileChatScreen({required this.isGroupChat, Key? key, required this.name, required this.uid})
+  const UserChatScreen({required this.isGroupChat, Key? key, required this.name, required this.uid})
       : super(key: key);
 
   @override

@@ -7,7 +7,7 @@ import 'package:whatsup1to1/common/utils/utils.dart';
 import 'package:whatsup1to1/routes/route_manager.dart';
 
 import '../../../user_auth/data/models/user_model.dart';
-import '../../chat/screens/mobile_chat_screen.dart';
+import '../../chat/screens/user_chat_screen.dart';
 
 String replaceCharAt(String oldString, int index, String newChar) {
   return oldString.substring(0, index) + newChar + oldString.substring(index + 1);

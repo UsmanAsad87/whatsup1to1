@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsup1to1/app/seller/seller_home.dart';
-import 'package:whatsup1to1/app/user/user_home.dart';
+import 'package:whatsup1to1/app/user/user_all_chats.dart';
 import 'package:whatsup1to1/app/user_on_boarding/views/user_on_boarding_screen1.dart';
 import 'package:whatsup1to1/common/common_libs.dart';
 import 'package:whatsup1to1/common/widgets/toasts_widgets.dart';
@@ -73,7 +73,7 @@ class MyApp extends StatelessWidget {
                                     return const UserLoginScreen();
                                   }
                                 }else{
-                                  return const UserHome();
+                                  return const UserAllChatScreen();
                                 }
                               }else{
                                 showToast(msg: "Your account is deactivated by Admin!");
