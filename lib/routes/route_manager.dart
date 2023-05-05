@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsup1to1/app/seller/seller_chat/screens/seller_chat_screen.dart';
 import 'package:whatsup1to1/app/seller/seller_home.dart';
-import 'package:whatsup1to1/app/user/chat/screens/mobile_chat_screen.dart';
+import 'package:whatsup1to1/app/user/chat/screens/user_chat_screen.dart';
 import 'package:whatsup1to1/app/user/select_contacts/screens/select_contacts_screen.dart';
 import 'package:whatsup1to1/app/user_auth/views/seller_account_under_review.dart';
 import 'package:whatsup1to1/app/user_auth/views/seller_main_store_address.dart';
@@ -12,7 +12,7 @@ import 'package:whatsup1to1/app/user_auth/views/user_otp_screen.dart';
 import 'package:whatsup1to1/app/user_auth/views/user_reset_pass_screen.dart';
 import 'package:whatsup1to1/app/user_on_boarding/views/user_on_boarding_screen1.dart';
 import 'package:whatsup1to1/app/user_on_boarding/views/user_on_boarding_screen2.dart';
-import '../app/user/user_home.dart';
+import '../app/user/user_all_chats.dart';
 import '../app/user_auth/views/seller_select_category_screen.dart';
 import '../app/user_auth/views/user_account_type_screen.dart';
 import '../app/user_auth/views/user_signup_screen.dart';
@@ -49,7 +49,7 @@ class AppRoutes {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case userMainMenu:
-        return _buildNormalRoute(const UserHome());
+        return _buildNormalRoute(const UserAllChatScreen());
       case userOnBoardingScreen1:
         return _buildRoute(const UserOnBoardingScreen1());
       case userOnBoardingScreen2:
@@ -83,7 +83,7 @@ class AppRoutes {
         return _buildRoute(const SelectContactsScreen());
       case mobileChatScreen:
         final arguments = settings.arguments as Map<String, dynamic>;
-        return _buildRoute(MobileChatScreen(
+        return _buildRoute(UserChatScreen(
           isGroupChat: false,
           name: arguments['name'],
           uid: arguments['uid'],

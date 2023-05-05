@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:whatsup1to1/app/user/chat/controller/chat_controller.dart';
-import 'package:whatsup1to1/app/user/chat/screens/mobile_chat_screen.dart';
+import 'package:whatsup1to1/app/user/chat/screens/user_chat_screen.dart';
 import 'package:whatsup1to1/colors.dart';
 import 'package:whatsup1to1/common/widgets/loader.dart';
 import 'package:whatsup1to1/models/chat_contact.dart';

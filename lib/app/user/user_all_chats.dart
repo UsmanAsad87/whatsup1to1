@@ -6,14 +6,14 @@ import 'package:whatsup1to1/routes/route_manager.dart';
 import '../../colors.dart';
 import '../../common/common_libs.dart';
 
-class UserHome extends ConsumerStatefulWidget {
-  const UserHome({Key? key}) : super(key: key);
+class UserAllChatScreen extends ConsumerStatefulWidget {
+  const UserAllChatScreen({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<UserHome> createState() => _UserHomeState();
+  ConsumerState<UserAllChatScreen> createState() => _UserHomeState();
 }
 
-class _UserHomeState extends ConsumerState<UserHome> with WidgetsBindingObserver{
+class _UserHomeState extends ConsumerState<UserAllChatScreen> with WidgetsBindingObserver{
 
   @override
   void initState() {
