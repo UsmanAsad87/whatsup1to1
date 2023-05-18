@@ -117,7 +117,7 @@ class AuthController extends StateNotifier<bool> {
       userModel = userModel.copyWith(
         uid: r.uid,
         image: imgUrl,
-        approved: false,
+        approved: true,
         activated: true,
         createdAt: DateTime.now(),
       );
